@@ -5,12 +5,11 @@ define([], function () {
         return {
             all: all,
             get: get,
-            create: create,
-            update: update,
             change: change,
             remove: remove,
             switchState: switchState,
-            labels: labels
+            labels: labels,
+            genders: genders
         };
 
         function all(params) {
@@ -25,23 +24,19 @@ define([], function () {
             });
         }
 
-        function create(user, params) {
-            return $http.post(AppConfig.apiRoot + '/users', user, {
-                params: params
-            });
-        }
-
-        function update(user, params) {
-            return $http.put(AppConfig.apiRoot + '/users/' + user.id, user, {
-                params: params
-            });
-        }
-
         function change(user, params) {
+            var method = 'post';
+            var url = AppConfig.apiRoot + '/users';
             if (user.id !== undefined) {
-                return update(user, params);
+                method = 'put';
+                url += '/' + user.id;
             }
-            return create(user, params);
+            return $http({
+                method: method,
+                url: url,
+                data: user,
+                params: params
+            });
         }
 
         function remove(id, params) {
@@ -60,6 +55,12 @@ define([], function () {
                     'fields': false,
                     'expand': 'labels'
                 }
+            });
+        }
+
+        function genders(params) {
+            return $http.get(AppConfig.apiRoot + '/genders', {
+                params: params
             });
         }
     }

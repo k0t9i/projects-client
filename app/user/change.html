@@ -17,5 +17,11 @@
             ng-options="group.name for group in UserGroupCtrl.getAll() track by group.id"
             multiple>
     </select><br>
+    <label>{{UserCtrl.getLabels().idGender}}</label>
+    <select name="gender"
+            ng-controller="UserGroupController as UserGroupCtrl"
+            ng-model="UserCtrl.user.gender"
+            ng-options="gender.name for gender in UserCtrl.getGenders() track by gender.id">
+    </select><br>
     <input type="submit" ng-show="UserCtrl.user">
 </form>

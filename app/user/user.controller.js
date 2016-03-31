@@ -7,6 +7,7 @@ define([], function () {
         var loaded = {};
         var users = [];
         var labels = {};
+        var genders = [];
 
         if ($routeParams.id !== undefined) {
             UserService.get($routeParams.id, {
@@ -15,8 +16,10 @@ define([], function () {
                 _this.user = response.data;
             });
         } else {
-            _this.user = {};
-            _this.user.userGroups = [];
+            _this.user = {
+                userGroups: [],
+                gender: {}
+            };
         }
 
         this.getAll = function() {
@@ -35,6 +38,8 @@ define([], function () {
                 this.user.groups = this.user.userGroups.map(function(item){
                     return item.id;
                 });
+                this.user.idGender = this.user.gender.id;
+
                 UserService.change(this.user).then(function(response){
                     $location.path('/user/list');
                 }, function(response){
@@ -63,6 +68,17 @@ define([], function () {
             }
 
             return labels;
+        }
+        
+        this.getGenders = function() {
+            if (!loaded['genders']) {
+                loaded['genders'] = true;
+                UserService.genders().then(function(response) {
+                    genders = response.data;
+                });
+            }
+
+            return genders;
         }
     }
 
