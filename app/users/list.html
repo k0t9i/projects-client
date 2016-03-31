@@ -7,6 +7,6 @@
         <td>{{user.middlename}}</td>
         <td>{{user.email}}</td>
         <td>{{user.gender}}</td>
-        <td><a href="#" ng-click="UserCtrl.switchState(user.id)">{{user.isActive}}</a></td>
+        <td><a href="#" ng-click="UserCtrl.switchState(user.id);$event.preventDefault()">{{user.isActive}}</a></td>
     </tr>
 </table>

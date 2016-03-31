@@ -19,7 +19,7 @@ define([], function () {
         this.switchState = function(id) {
             UserService.switchState(id).then(function(response) {
                 if (response.data.success) {
-                    
+                    loaded['users'] = false;
                 }
             });
         }
