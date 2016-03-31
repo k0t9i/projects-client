@@ -11,5 +11,6 @@
         <td>{{user.email}}</td>
         <td>{{user.gender.name}}</td>
         <td><a href="#" ng-click="UserCtrl.switchState(user.id);$event.preventDefault()">{{user.isActive}}</a></td>
+        <td><a href="#" ng-click="UserCtrl.remove(user.id);$event.preventDefault()">X</a></td>
     </tr>
 </table>

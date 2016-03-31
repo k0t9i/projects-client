@@ -55,6 +55,12 @@ define([
             }
         }
 
+        this.remove = function(id) {
+            UserService.remove(id).then(function(response) {
+                loaded['users'] = false;
+            });
+        }
+
         this.switchState = function(id) {
             UserService.switchState(id).then(function(response) {
                 if (response.data.success) {
