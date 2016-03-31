@@ -9,17 +9,19 @@ define([], function () {
         var labels = {};
         var genders = [];
 
-        if ($routeParams.id !== undefined) {
-            UserService.get($routeParams.id, {
-                'expand': 'userGroups'
-            }).then(function(response) {
-                _this.user = response.data;
-            });
-        } else {
-            _this.user = {
-                userGroups: [],
-                gender: {}
-            };
+        this.fetch = function() {
+            if ($routeParams.id !== undefined) {
+                UserService.get($routeParams.id, {
+                    'expand': 'userGroups'
+                }).then(function(response) {
+                    _this.user = response.data;
+                });
+            } else {
+                _this.user = {
+                    userGroups: [],
+                    gender: {}
+                };
+            }
         }
 
         this.getAll = function() {

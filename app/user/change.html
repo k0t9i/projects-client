@@ -1,7 +1,7 @@
 <ul>
     <li ng-repeat="error in UserCtrl.errors">{{error}}</li>
 </ul>
-<form name="userForm" ng-submit="UserCtrl.user && UserCtrl.change()">
+<form name="userForm" ng-submit="UserCtrl.user && UserCtrl.change()" ng-init="UserCtrl.fetch()">
     <label>{{UserCtrl.getLabels().login}}</label><input name="login" ng-model="UserCtrl.user.login"><br>
     <label>{{UserCtrl.getLabels().email}}</label><input name="email" ng-model="UserCtrl.user.email"><br>
     <label>{{UserCtrl.getLabels().password}}</label><input name="password" ng-model="UserCtrl.user.password"><br>
