@@ -1,6 +1,8 @@
 'use strict';
 
-define([], function () {
+define([
+    'jquery'
+], function () {
     function ret($scope, $location, $routeParams, UserService) {
         this.errors = {};
         var _this = this;
@@ -37,7 +39,7 @@ define([], function () {
 
         this.change = function() {
             if (this.user) {
-                this.user.groups = this.user.userGroups.map(function(item){
+                this.user.groups = jQuery.map(this.user.userGroups, function(item){
                     return item.id;
                 });
                 this.user.idGender = this.user.gender.id;
@@ -46,8 +48,8 @@ define([], function () {
                     $location.path('/user/list');
                 }, function(response){
                     _this.errors = {};
-                    angular.forEach(response.data, function(val){
-                        _this.errors[val.field] = val.message;
+                    jQuery.each(response.data, function(){
+                        _this.errors[this.field] = this.message;
                     });
                 });
             }
