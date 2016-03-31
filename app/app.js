@@ -9,9 +9,7 @@ define([
     var app = angular.module('projects', ['ngRoute', 'projects.users']);
 
     app.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.otherwise({
-            redirectTo: '/users'
-        })
+
     }]);
 
     app.run(['$http', function($http){

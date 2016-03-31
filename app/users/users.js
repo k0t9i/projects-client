@@ -3,9 +3,9 @@
 define([
     'angular',
     'app/users/users.service',
-    'app/users/users.controller'
-], function (angular, UserService, UserController) {
-
+    'app/users/users.controller',
+    'app/config'
+], function (angular, UserService, UserController, AppConfig) {
     var app = angular.module('projects.users', ['ngRoute']);
 
     app.config(['$routeProvider', function ($routeProvider) {
@@ -17,6 +17,7 @@ define([
     }]);
 
     app.factory('UserService', UserService);
+    app.factory('AppConfig', AppConfig);
     app.controller('UserController', UserController);
 
     return app;
