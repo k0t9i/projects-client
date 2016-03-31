@@ -1,0 +1,34 @@
+<table border="1">
+    <tr>
+        <td>{{UserCtrl.getLabels().login}}</td>
+        <td>{{UserCtrl.user.login}}</td>
+    </tr>
+    <tr>
+        <td>{{UserCtrl.getLabels().email}}</td>
+        <td>{{UserCtrl.user.email}}</td>
+    </tr>
+    <tr>
+        <td>{{UserCtrl.getLabels().lastname}}</td>
+        <td>{{UserCtrl.user.lastname}}</td>
+    </tr>
+    <tr>
+        <td>{{UserCtrl.getLabels().firstname}}</td>
+        <td>{{UserCtrl.user.firstname}}</td>
+    </tr>
+    <tr>
+        <td>{{UserCtrl.getLabels().middlename}}</td>
+        <td>{{UserCtrl.user.middlename}}</td>
+    </tr>
+    <tr>
+        <td>{{UserCtrl.getLabels().groups}}</td>
+        <td><span ng-repeat="group in UserCtrl.user.userGroups">{{group.name}}{{$last ? '' : ', '}}</span></td>
+    </tr>
+    <tr>
+        <td>{{UserCtrl.getLabels().idGender}}</td>
+        <td>{{UserCtrl.user.gender.name}}</td>
+    </tr>
+    <tr>
+        <td>{{UserCtrl.getLabels().isActive}}</td>
+        <td>{{UserCtrl.user.isActive}}</td>
+    </tr>
+</table>

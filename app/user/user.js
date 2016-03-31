@@ -18,6 +18,10 @@ define([
             templateUrl: 'app/user/change.html',
             controller: 'UserController',
             controllerAs: 'UserCtrl'
+        }).when('/user/view/:id', {
+            templateUrl: 'app/user/view.html',
+            controller: 'UserController',
+            controllerAs: 'UserCtrl'
         });
     }]);
 
