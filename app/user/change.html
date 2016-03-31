@@ -11,8 +11,11 @@
     <label>{{UserCtrl.getLabels().firstname}}</label><input name="firstname" ng-model="UserCtrl.user.firstname"><br>
     <label>{{UserCtrl.getLabels().middlename}}</label><input name="middlename" ng-model="UserCtrl.user.middlename"><br>
     <label>{{UserCtrl.getLabels().groups}}</label>
-    <select name="groups" ng-model="UserCtrl.user.groups" multiple>
-        <option ng-repeat="group in UserCtrl.getGroups()" value="{{group.id}}">{{group.name}}</option>
+    <select name="groups"
+            ng-controller="UserGroupController as UserGroupCtrl"
+            ng-model="UserCtrl.user.userGroups"
+            ng-options="group.name for group in UserGroupCtrl.getAll() track by group.id"
+            multiple>
     </select><br>
     <input type="submit" ng-show="UserCtrl.user">
 </form>

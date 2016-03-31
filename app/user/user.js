@@ -4,9 +4,10 @@ define([
     'angular',
     'app/user/user.service',
     'app/user/user.controller',
-    'app/config'
+    'app/config',
+    'app/user-group/user-group'
 ], function (angular, UserService, UserController, AppConfig) {
-    var app = angular.module('projects.user', ['ngRoute']);
+    var app = angular.module('projects.user', ['ngRoute', 'projects.user-group']);
 
     app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/user/list', {

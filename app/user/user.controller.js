@@ -9,11 +9,14 @@ define([], function () {
         var labels = {};
 
         if ($routeParams.id !== undefined) {
-            UserService.get($routeParams.id).then(function(response) {
+            UserService.get($routeParams.id, {
+                'expand': 'userGroups'
+            }).then(function(response) {
                 _this.user = response.data;
             });
         } else {
             _this.user = {};
+            _this.user.userGroups = [];
         }
 
         this.getAll = function() {
@@ -29,6 +32,9 @@ define([], function () {
 
         this.change = function() {
             if (this.user) {
+                this.user.groups = this.user.userGroups.map(function(item){
+                    return item.id;
+                });
                 UserService.change(this.user).then(function(response){
                     $location.path('/user/list');
                 }, function(response){
