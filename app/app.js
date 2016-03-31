@@ -3,10 +3,10 @@
 define([
     'angular',
     'angularRoute',
-    'app/users/users'
+    'app/user/user'
 ], function (angular, angularRoute) {
 
-    var app = angular.module('projects', ['ngRoute', 'projects.users']);
+    var app = angular.module('projects', ['ngRoute', 'projects.user']);
 
     app.config(['$routeProvider', function ($routeProvider) {
 
