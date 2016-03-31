@@ -1,0 +1,25 @@
+{
+  "name": "projects-client",
+  "authors": [
+    "k0t9i <k0t9i@yandex.ru>"
+  ],
+  "description": "Client for restful service",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./vendors",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "angular-route": "^1.5.3",
+    "angular-cookies": "^1.5.3",
+    "requirejs": "^2.2.0"
+  }
+}
