@@ -9,7 +9,9 @@ define([
     var app = angular.module('projects', ['ngRoute', 'projects.user']);
 
     app.config(['$routeProvider', function ($routeProvider) {
-
+        $routeProvider.otherwise({
+            redirectTo: '/user/list'
+        });
     }]);
 
     app.run(['$http', function($http){

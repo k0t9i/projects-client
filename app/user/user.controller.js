@@ -3,7 +3,7 @@
 define([
     'jquery'
 ], function () {
-    function ret($scope, $location, $routeParams, UserService) {
+    function ret($location, $routeParams, UserService) {
         this.errors = {};
         var _this = this;
         var loaded = {};
@@ -92,7 +92,7 @@ define([
         }
     }
 
-    ret.$inject = ['$scope', '$location', '$routeParams', 'UserService'];
+    ret.$inject = ['$location', '$routeParams', 'UserService'];
 
     return ret;
 });
