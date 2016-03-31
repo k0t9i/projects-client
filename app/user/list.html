@@ -1,7 +1,7 @@
 <table width="100%" border="1">
-    <tr ng-repeat="user in UserCtrl.getUsers()">
+    <tr ng-repeat="user in UserCtrl.getAll()">
         <td>{{user.id}}</td>
-        <td>{{user.login}}</td>
+        <td><a href="#/user/change/{{user.id}}">{{user.login}}</a></td>
         <td>{{user.lastname}}</td>
         <td>{{user.firstname}}</td>
         <td>{{user.middlename}}</td>

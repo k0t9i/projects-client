@@ -9,8 +9,12 @@ define([
     var app = angular.module('projects.user', ['ngRoute']);
 
     app.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/user', {
+        $routeProvider.when('/user/list', {
             templateUrl: 'app/user/list.html',
+            controller: 'UserController',
+            controllerAs: 'UserCtrl'
+        }).when('/user/change/:id?', {
+            templateUrl: 'app/user/change.html',
             controller: 'UserController',
             controllerAs: 'UserCtrl'
         });

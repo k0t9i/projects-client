@@ -1,0 +1,18 @@
+<ul>
+    <li ng-repeat="error in UserCtrl.errors">{{error}}</li>
+</ul>
+<form name="userForm" ng-submit="UserCtrl.user && UserCtrl.change()">
+    <label>{{UserCtrl.getLabels().login}}</label><input name="login" ng-model="UserCtrl.user.login"><br>
+    <label>{{UserCtrl.getLabels().email}}</label><input name="email" ng-model="UserCtrl.user.email"><br>
+    <label>{{UserCtrl.getLabels().password}}</label><input name="password" ng-model="UserCtrl.user.password"><br>
+    <label>{{UserCtrl.getLabels().passwordRepeat}}</label><input name="passwordRepeat"
+                                                                 ng-model="UserCtrl.user.passwordRepeat"><br>
+    <label>{{UserCtrl.getLabels().lastname}}</label><input name="lastname" ng-model="UserCtrl.user.lastname"><br>
+    <label>{{UserCtrl.getLabels().firstname}}</label><input name="firstname" ng-model="UserCtrl.user.firstname"><br>
+    <label>{{UserCtrl.getLabels().middlename}}</label><input name="middlename" ng-model="UserCtrl.user.middlename"><br>
+    <label>{{UserCtrl.getLabels().groups}}</label>
+    <select name="groups" ng-model="UserCtrl.user.groups" multiple>
+        <option ng-repeat="group in UserCtrl.getGroups()" value="{{group.id}}">{{group.name}}</option>
+    </select><br>
+    <input type="submit" ng-show="UserCtrl.user">
+</form>

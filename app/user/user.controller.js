@@ -1,11 +1,22 @@
 'use strict';
 
 define([], function () {
-    function ret($scope, UserService) {
+    function ret($scope, $location, $routeParams, UserService) {
+        this.errors = {};
+        var _this = this;
         var loaded = {};
         var users = [];
+        var labels = {};
 
-        this.getUsers = function() {
+        if ($routeParams.id !== undefined) {
+            UserService.get($routeParams.id).then(function(response) {
+                _this.user = response.data;
+            });
+        } else {
+            _this.user = {};
+        }
+
+        this.getAll = function() {
             if (!loaded['users']) {
                 loaded['users'] = true;
                 UserService.all().then(function(response) {
@@ -16,6 +27,19 @@ define([], function () {
             return users;
         }
 
+        this.change = function() {
+            if (this.user) {
+                UserService.change(this.user).then(function(response){
+                    $location.path('/user/list');
+                }, function(response){
+                    _this.errors = {};
+                    angular.forEach(response.data, function(val){
+                        _this.errors[val.field] = val.message;
+                    });
+                });
+            }
+        }
+
         this.switchState = function(id) {
             UserService.switchState(id).then(function(response) {
                 if (response.data.success) {
@@ -23,9 +47,20 @@ define([], function () {
                 }
             });
         }
+
+        this.getLabels = function() {
+            if (!loaded['labels']) {
+                loaded['labels'] = true;
+                UserService.labels().then(function(response) {
+                    labels = response.data.labels;
+                });
+            }
+
+            return labels;
+        }
     }
 
-    ret.$inject = ['$scope', 'UserService'];
+    ret.$inject = ['$scope', '$location', '$routeParams', 'UserService'];
 
     return ret;
 });
