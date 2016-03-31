@@ -3,7 +3,8 @@
 require.config({
     paths: {
         angular: 'bower/angular/angular.min',
-        angularRoute: 'bower/angular-route/angular-route.min'
+        angularRoute: 'bower/angular-route/angular-route.min',
+        jquery: 'bower/jquery/dist/jquery.min'
     },
     shim: {
         'angular': {'exports': 'angular'},
