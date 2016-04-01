@@ -16,5 +16,11 @@ define([
         });
     }]);
 
+    app.run(['$rootScope', function($rootScope) {
+        $rootScope.$on('$routeChangeSuccess', function (event, current) {
+            $rootScope.page = current.page;
+        });
+    }]);
+
     return app;
 });

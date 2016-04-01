@@ -1,16 +1,17 @@
-<p>
-    <a href="#/user/change">Create user</a>
-</p>
-<table width="100%" border="1">
+<div class="panel-body">
+    <a href="#/user/change" class="btn btn-primary">Create user</a>
+</div>
+<table class="table">
     <tr ng-repeat="user in UserCtrl.getAll()">
         <td>{{user.id}}</td>
-        <td><a href="#/user/change/{{user.id}}">{{user.login}}</a></td>
+        <td><a href="#/user/view/{{user.id}}">{{user.login}}</a></td>
         <td>{{user.lastname}}</td>
         <td>{{user.firstname}}</td>
         <td>{{user.middlename}}</td>
         <td>{{user.email}}</td>
         <td>{{user.gender.name}}</td>
-        <td><a href="#" ng-click="UserCtrl.switchState(user.id);$event.preventDefault()">{{user.isActive}}</a></td>
-        <td><a href="#" ng-click="UserCtrl.remove(user.id);$event.preventDefault()">X</a></td>
+        <td><a href="#" ng-click="UserCtrl.switchState(user.id);$event.preventDefault()"><span class="glyphicon glyphicon-ok"></span></a></td>
+        <td><a href="#/user/change/{{user.id}}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+        <td><a href="#" ng-click="UserCtrl.remove(user.id);$event.preventDefault()"><span class="glyphicon glyphicon-remove"></span></a></td>
     </tr>
 </table>

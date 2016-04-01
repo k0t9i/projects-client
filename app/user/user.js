@@ -13,7 +13,11 @@ define([
         $routeProvider.when('/user/list', {
             templateUrl: 'app/user/list.html',
             controller: 'UserController',
-            controllerAs: 'UserCtrl'
+            controllerAs: 'UserCtrl',
+            page: {
+                title: 'User List',
+                header: 'User List'
+            }
         }).when('/user/change/:id?', {
             templateUrl: 'app/user/change.html',
             controller: 'UserController',
