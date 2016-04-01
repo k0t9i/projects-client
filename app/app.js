@@ -3,13 +3,22 @@
 define([
     'angular',
     'angularRoute',
+    'app/service/unauthorized-http-interceptor.service',
+    'app/config',
     'app/user/user'
-], function (angular, angularRoute) {
+], function (angular, angularRoute, UnauthorizedHttpInterceptor, AppConfig) {
 
     var app = angular.module('projects', ['ngRoute', 'projects.user']);
 
-    app.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.otherwise({
+    app.factory('UnauthorizedHttpInterceptor', UnauthorizedHttpInterceptor);
+    app.factory('AppConfig', AppConfig);
+
+    app.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
+        $httpProvider.interceptors.push('UnauthorizedHttpInterceptor');
+
+        $routeProvider.when('/login', {
+            templateUrl: 'app/auth/login.html'
+        }).otherwise({
             redirectTo: '/user/list'
         });
     }]);
