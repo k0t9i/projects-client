@@ -5,7 +5,7 @@ define([], function () {
         return {
             login: login,
             logout: logout,
-            setAuthorizationHeader: setAuthorizationHeader
+            resolveCredentials: resolveCredentials
         };
 
         function login(login, password) {
@@ -14,10 +14,7 @@ define([], function () {
                 password: password
             }).success(function (response) {
                 $cookies.putObject(AppConfig.authTokenParam, response);
-                setAuthorizationHeader();
-                UserService.self().success(function (response) {
-                    $scope.credentials = response;
-                });
+                resolveCredentials();
             });
         }
 
@@ -31,9 +28,18 @@ define([], function () {
 
             return $q.when(promise).finally(function () {
                 $cookies.remove(AppConfig.authTokenParam);
-                setAuthorizationHeader();
-                $scope.credentials = undefined;
+                resolveCredentials();
             });
+        }
+
+        function resolveCredentials() {
+            if (setAuthorizationHeader()) {
+                UserService.self().success(function (response) {
+                    $scope.credentials = response;
+                });
+            } else {
+                $scope.credentials = undefined;
+            }
         }
 
         function setAuthorizationHeader() {

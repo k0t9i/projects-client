@@ -22,7 +22,9 @@ define([
         });
     }]);
 
-    app.run(['$rootScope', '$http', '$location', 'AuthService', 'UserService', function ($scope, $http, $location, AuthService) {
+    app.run(['$rootScope', '$http', '$location', 'AuthService', 'UserService', function ($scope, $http, $location, AuthService, UserService) {
+        AuthService.resolveCredentials();
+
         $scope.$on('$routeChangeStart', function (evt, next) {
             if (next.originalPath == '/logout') {
                 AuthService.logout().finally(function(){
@@ -35,6 +37,9 @@ define([
     app.factory('AppConfig', AppConfig);
     app.factory('AuthService', AuthService);
     app.factory('UnauthorizedHttpInterceptor', UnauthorizedHttpInterceptor);
+    app.factory('AuthMediatorService', function(){
+
+    });
     app.controller('AuthController', AuthController);
 
     return app;
