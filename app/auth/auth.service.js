@@ -23,7 +23,7 @@ define([], function () {
             var promise = null;
 
             if (authToken) {
-                promise = $http.delete(AppConfig.apiRoot + '/access-tokens/' + authToken);
+                promise = $http.delete(AppConfig.apiRoot + '/access-tokens/' + authToken.id);
             }
 
             return $q.when(promise).finally(function () {
