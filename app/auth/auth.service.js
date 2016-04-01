@@ -1,7 +1,7 @@
 'use strict';
 
 define([], function () {
-    function ret($q, $cookies, $http, AppConfig) {
+    function ret($q, $cookies, $http, $scope, AppConfig, UserService) {
         return {
             login: login,
             logout: logout,
@@ -15,6 +15,9 @@ define([], function () {
             }).success(function (response) {
                 $cookies.putObject(AppConfig.authTokenParam, response);
                 setAuthorizationHeader();
+                UserService.self().success(function (response) {
+                    $scope.credentials = response;
+                });
             });
         }
 
@@ -29,6 +32,7 @@ define([], function () {
             return $q.when(promise).finally(function () {
                 $cookies.remove(AppConfig.authTokenParam);
                 setAuthorizationHeader();
+                $scope.credentials = undefined;
             });
         }
 
@@ -45,7 +49,7 @@ define([], function () {
         }
     }
 
-    ret.$inject = ['$q', '$cookies', '$http', 'AppConfig'];
+    ret.$inject = ['$q', '$cookies', '$http', '$rootScope', 'AppConfig', 'UserService'];
 
     return ret;
 });
