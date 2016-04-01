@@ -7,7 +7,8 @@ define([
 
     function ret() {
         var config = {
-            apiRoot: 'http://projects.dev/v1'
+            apiRoot: 'http://projects.dev/v1',
+            authTokenParam: 'authToken'
         };
 
         return jQuery.extend(config, localConfig());

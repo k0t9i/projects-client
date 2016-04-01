@@ -5,7 +5,6 @@ define([], function () {
         return {
             login: login,
             logout: logout,
-            localLogout: localLogout,
             setAuthorizationHeader: setAuthorizationHeader
         };
 
@@ -14,13 +13,13 @@ define([], function () {
                 login: login,
                 password: password
             }).success(function (response) {
-                $cookies.putObject('authToken', response);
+                $cookies.putObject(AppConfig.authTokenParam, response);
                 setAuthorizationHeader();
             });
         }
 
         function logout() {
-            var authToken = $cookies.getObject('authToken');
+            var authToken = $cookies.getObject(AppConfig.authTokenParam);
             var promise = null;
 
             if (authToken) {
@@ -28,13 +27,13 @@ define([], function () {
             }
 
             return $q.when(promise).finally(function () {
-                $cookies.remove('authToken');
+                $cookies.remove(AppConfig.authTokenParam);
                 setAuthorizationHeader();
             });
         }
 
         function setAuthorizationHeader() {
-            var authToken = $cookies.getObject('authToken');
+            var authToken = $cookies.getObject(AppConfig.authTokenParam);
 
             if (authToken) {
                 $http.defaults.headers.common.Authorization = 'Bearer ' + authToken.token;
