@@ -14,7 +14,8 @@ define([], function () {
             responseError: function (response) {
                 if (response.status === 401) {
                     canceller.resolve('Unauthorized');
-                    $location.path('/login');
+                    $location.path('/logout');
+                    canceller = $q.defer();
                 }
                 return $q.reject(response);
             }

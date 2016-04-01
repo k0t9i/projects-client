@@ -9,8 +9,15 @@ define([], function () {
             remove: remove,
             switchState: switchState,
             labels: labels,
-            genders: genders
+            genders: genders,
+            self: self
         };
+
+        function self(params) {
+            return $http.get(AppConfig.apiRoot + '/users/self', {
+                params: params
+            });
+        }
 
         function all(params) {
             return $http.get(AppConfig.apiRoot + '/users', {

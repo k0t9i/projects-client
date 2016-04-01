@@ -3,11 +3,16 @@
 define([
     'jquery'
 ], function () {
-    function ret($location, $routeParams, AuthService) {
+    function ret($location, AuthService) {
 
+        this.login = function() {
+            AuthService.login(this.username, this.password).then(function(response){
+                $location.path('/');
+            });
+        };
     }
 
-    ret.$inject = ['AuthService'];
+    ret.$inject = ['$location', 'AuthService'];
 
     return ret;
 });
