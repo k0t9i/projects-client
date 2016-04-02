@@ -73,7 +73,7 @@ define([
             if (!loaded['labels']) {
                 loaded['labels'] = true;
                 UserService.labels().then(function(response) {
-                    labels = response.data.labels;
+                    labels = response.data;
                 });
             }
 

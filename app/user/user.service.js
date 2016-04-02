@@ -57,12 +57,7 @@ define([], function () {
         }
 
         function labels() {
-            return $http.get(AppConfig.apiRoot + '/users/self', {
-                params: {
-                    'fields': false,
-                    'expand': 'labels'
-                }
-            });
+            return $http.get(AppConfig.apiRoot + '/users/labels');
         }
 
         function genders(params) {
