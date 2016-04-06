@@ -3,13 +3,19 @@
 define([
     'jquery'
 ], function () {
-    function ret($location, $routeParams, UserService) {
+    function ret($location, $routeParams, UserService, $scope) {
         this.errors = {};
         var _this = this;
         var loaded = {};
         var users = [];
         var labels = {};
         var genders = [];
+        var params = {};
+
+        this.sort = function(scope) {
+            params['sort'] = scope.attr;
+            loaded['users'] = false;
+        }
 
         this.fetch = function() {
             if ($routeParams.id !== undefined) {
@@ -29,7 +35,7 @@ define([
         this.getAll = function() {
             if (!loaded['users']) {
                 loaded['users'] = true;
-                UserService.all().then(function(response) {
+                UserService.all(params).then(function(response) {
                     users = response.data;
                 });
             }
@@ -92,7 +98,7 @@ define([
         }
     }
 
-    ret.$inject = ['$location', '$routeParams', 'UserService'];
+    ret.$inject = ['$location', '$routeParams', 'UserService', '$scope'];
 
     return ret;
 });

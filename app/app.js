@@ -22,5 +22,26 @@ define([
         });
     }]);
 
+    app.directive('sort', function(){
+        return {
+            restrict: 'E',
+            transclude: true,
+            replace: true,
+            template: '<a ng-transclude href="#"></a>',
+            scope: {
+                attr: '@',
+                callback: '='
+            },
+            link: function(scope, element) {
+                element.on('click', function(evt){
+                    evt.preventDefault();
+                    scope.asc = scope.attr.indexOf('-') === 0;
+                    scope.attr = scope.asc ? scope.attr.substr(1) : ('-' + scope.attr);
+                    scope.$apply(scope.callback);
+                });
+            }
+        };
+    });
+
     return app;
 });
