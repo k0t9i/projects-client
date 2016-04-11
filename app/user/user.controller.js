@@ -5,17 +5,18 @@ define([
 ], function () {
     function ret($location, $routeParams, UserService, $scope) {
         this.errors = {};
+        $scope.params = {};
         var _this = this;
         var loaded = {};
         var users = [];
         var labels = {};
         var genders = [];
-        var params = {};
 
-        this.sort = function(scope) {
-            params['sort'] = scope.attr;
+        $scope.$watch(function(){
+            return $scope.params;
+        }, function(newValue, oldValue){
             loaded['users'] = false;
-        }
+        }, true);
 
         this.fetch = function() {
             if ($routeParams.id !== undefined) {
@@ -35,7 +36,7 @@ define([
         this.getAll = function() {
             if (!loaded['users']) {
                 loaded['users'] = true;
-                UserService.all(params).then(function(response) {
+                UserService.all($scope.params).then(function(response) {
                     users = response.data;
                 });
             }

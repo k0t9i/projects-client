@@ -27,17 +27,28 @@ define([
             restrict: 'E',
             transclude: true,
             replace: true,
-            template: '<a ng-transclude href="#"></a>',
+            template: '<a href="#"><span ng-transclude></span> <i class="fa fa-fw fa-sort" ng-class="{\'fa-sort-asc\': sort == attr, \'fa-sort-desc\': sort == \'-\' + attr}"></i></a>',
             scope: {
-                attr: '@',
-                callback: '='
+                attr: '@'
             },
             link: function(scope, element) {
                 element.on('click', function(evt){
                     evt.preventDefault();
-                    scope.asc = scope.attr.indexOf('-') === 0;
-                    scope.attr = scope.asc ? scope.attr.substr(1) : ('-' + scope.attr);
-                    scope.$apply(scope.callback);
+                    var sort = scope.$parent.params['sort'] !== undefined ? scope.$parent.params['sort'] : '';
+                    if (sort) {
+                        var sortAttr = sort.indexOf('-') === 0 ? sort.substr(1) : sort;
+                        if (sortAttr != scope.attr) {
+                            sort = '';
+                        }
+                    }
+                    scope.$parent.params['sort'] = sort.indexOf('-') === 0 ? scope.attr : ('-' + scope.attr);
+                    scope.$parent.$digest();
+                });
+
+                scope.$watch(function(){
+                    return scope.$parent.params['sort'];
+                }, function(){
+                    scope.sort = scope.$parent.params['sort'];
                 });
             }
         };

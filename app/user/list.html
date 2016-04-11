@@ -4,13 +4,13 @@
 <table class="table">
     <thead>
         <tr>
-            <td>ID</td>
-            <td><sort attr="login" callback="UserCtrl.sort">{{UserCtrl.getLabels().login}}</sort></td>
-            <td><sort attr="lastname" callback="UserCtrl.sort">{{UserCtrl.getLabels().lastname}}</sort></td>
-            <td><sort attr="firstname" callback="UserCtrl.sort">{{UserCtrl.getLabels().firstname}}</sort></td>
-            <td><sort attr="middlename" callback="UserCtrl.sort">{{UserCtrl.getLabels().middlename}}</sort></td>
-            <td><sort attr="email" callback="UserCtrl.sort">{{UserCtrl.getLabels().email}}</sort></td>
-            <td><sort attr="idGender" callback="UserCtrl.sort">{{UserCtrl.getLabels().idGender}}</sort></td>
+            <td><sort attr="id">ID</sort></td>
+            <td><sort attr="login">{{UserCtrl.getLabels().login}}</sort></td>
+            <td><sort attr="lastname">{{asc}}{{UserCtrl.getLabels().lastname}}</sort></td>
+            <td><sort attr="firstname">{{UserCtrl.getLabels().firstname}}</sort></td>
+            <td><sort attr="middlename">{{UserCtrl.getLabels().middlename}}</sort></td>
+            <td><sort attr="email">{{UserCtrl.getLabels().email}}</sort></td>
+            <td><sort attr="idGender">{{UserCtrl.getLabels().idGender}}</sort></td>
             <td></td>
             <td></td>
             <td></td>
