@@ -1,27 +1,81 @@
-<ul>
-    <li ng-repeat="error in UserCtrl.errors">{{error}}</li>
-</ul>
-<form name="userForm" ng-submit="UserCtrl.user && UserCtrl.change()" ng-init="UserCtrl.fetch()">
-    <label>{{UserCtrl.getLabels().login}}</label><input name="login" ng-model="UserCtrl.user.login"><br>
-    <label>{{UserCtrl.getLabels().email}}</label><input name="email" ng-model="UserCtrl.user.email"><br>
-    <label>{{UserCtrl.getLabels().password}}</label><input name="password" ng-model="UserCtrl.user.password"><br>
-    <label>{{UserCtrl.getLabels().passwordRepeat}}</label><input name="passwordRepeat"
-                                                                 ng-model="UserCtrl.user.passwordRepeat"><br>
-    <label>{{UserCtrl.getLabels().lastname}}</label><input name="lastname" ng-model="UserCtrl.user.lastname"><br>
-    <label>{{UserCtrl.getLabels().firstname}}</label><input name="firstname" ng-model="UserCtrl.user.firstname"><br>
-    <label>{{UserCtrl.getLabels().middlename}}</label><input name="middlename" ng-model="UserCtrl.user.middlename"><br>
-    <label>{{UserCtrl.getLabels().groups}}</label>
-    <select name="groups"
-            ng-controller="UserGroupController as UserGroupCtrl"
-            ng-model="UserCtrl.user.userGroups"
-            ng-options="group.name for group in UserGroupCtrl.getAll() track by group.id"
-            multiple>
-    </select><br>
-    <label>{{UserCtrl.getLabels().idGender}}</label>
-    <select name="gender"
-            ng-controller="UserGroupController as UserGroupCtrl"
-            ng-model="UserCtrl.user.gender"
-            ng-options="gender.name for gender in UserCtrl.getGenders() track by gender.id">
-    </select><br>
-    <input type="submit" ng-show="UserCtrl.user">
+<form name="userForm" ng-submit="UserCtrl.change()" ng-init="UserCtrl.fetch()" role="form" class="form-horizontal">
+    <div class="form-group" ng-class="{'has-error': UserCtrl.errors['login']}">
+        <label class="control-label col-sm-2" for="login">{{UserCtrl.getLabels().login}}</label>
+        <div class="col-sm-4">
+            <input name="login" ng-model="UserCtrl.user.login" class="form-control" id="login">
+            <div class="text-danger">{{UserCtrl.errors.login}}</div>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error': UserCtrl.errors['email']}">
+        <label class="control-label col-sm-2" for="email">{{UserCtrl.getLabels().email}}</label>
+        <div class="col-sm-4">
+            <input name="email" ng-model="UserCtrl.user.email" class="form-control" id="email">
+            <div class="text-danger">{{UserCtrl.errors.email}}</div>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error': UserCtrl.errors['password']}">
+        <label class="control-label col-sm-2" for="password">{{UserCtrl.getLabels().password}}</label>
+        <div class="col-sm-4">
+            <input name="password" ng-model="UserCtrl.user.password" class="form-control" id="password" type="password">
+            <div class="text-danger">{{UserCtrl.errors.password}}</div>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error': UserCtrl.errors['passwordRepeat']}">
+        <label class="control-label col-sm-2" for="passwordRepeat">{{UserCtrl.getLabels().passwordRepeat}}</label>
+        <div class="col-sm-4">
+            <input name="passwordRepeat" ng-model="UserCtrl.user.passwordRepeat" class="form-control" id="passwordRepeat" type="password">
+            <div class="text-danger">{{UserCtrl.errors.passwordRepeat}}</div>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error': UserCtrl.errors['lastname']}">
+        <label class="control-label col-sm-2" for="lastname">{{UserCtrl.getLabels().lastname}}</label>
+        <div class="col-sm-4">
+            <input name="lastname" ng-model="UserCtrl.user.lastname" class="form-control" id="lastname">
+            <div class="text-danger">{{UserCtrl.errors.lastname}}</div>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error': UserCtrl.errors['firstname']}">
+        <label class="control-label col-sm-2" for="firstname">{{UserCtrl.getLabels().firstname}}</label>
+        <div class="col-sm-4">
+            <input name="firstname" ng-model="UserCtrl.user.firstname" class="form-control" id="firstname">
+            <div class="text-danger">{{UserCtrl.errors.firstname}}</div>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error': UserCtrl.errors['middlename']}">
+        <label class="control-label col-sm-2" for="middlename">{{UserCtrl.getLabels().middlename}}</label>
+        <div class="col-sm-4">
+            <input name="middlename" ng-model="UserCtrl.user.middlename" class="form-control" id="middlename">
+            <div class="text-danger">{{UserCtrl.errors.middlename}}</div>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error': UserCtrl.errors['groups']}">
+        <label class="control-label col-sm-2" for="groups">{{UserCtrl.getLabels().groups}}</label>
+        <div class="col-sm-4">
+            <select name="groups"
+                    ng-controller="UserGroupController as UserGroupCtrl"
+                    ng-model="UserCtrl.user.userGroups"
+                    ng-options="group.name for group in UserGroupCtrl.getAll() track by group.id"
+                    multiple class="form-control" id="groups">
+            </select>
+            <div class="text-danger">{{UserCtrl.errors.groups}}</div>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error': UserCtrl.errors['idGender']}">
+        <label class="control-label col-sm-2" for="gender">{{UserCtrl.getLabels().idGender}}</label>
+        <div class="col-sm-4">
+            <select name="gender"
+                    ng-controller="UserGroupController as UserGroupCtrl"
+                    ng-model="UserCtrl.user.gender"
+                    ng-options="gender.name for gender in UserCtrl.getGenders() track by gender.id" class="form-control" id="gender">
+            </select>
+            <div class="text-danger">{{UserCtrl.errors.idGender}}</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <input type="submit" class="btn btn-success" value="Сохранить">
+            <a href="/#/user" class="btn btn-default">Отмена</a>
+        </div>
+    </div>
 </form>

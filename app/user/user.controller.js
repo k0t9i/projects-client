@@ -49,7 +49,7 @@ define([
                 this.user.groups = jQuery.map(this.user.userGroups, function(item){
                     return item.id;
                 });
-                this.user.idGender = this.user.gender.id;
+                this.user.idGender = this.user.gender ? this.user.gender.id : null;
 
                 UserService.change(this.user).then(function(response){
                     $location.path('/user/list');

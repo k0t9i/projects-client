@@ -21,7 +21,11 @@ define([
         }).when('/user/change/:id?', {
             templateUrl: 'app/user/change.html',
             controller: 'UserController',
-            controllerAs: 'UserCtrl'
+            controllerAs: 'UserCtrl',
+            page: {
+                title: 'User Form',
+                header: 'User Form'
+            }
         }).when('/user/view/:id', {
             templateUrl: 'app/user/view.html',
             controller: 'UserController',
