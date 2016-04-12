@@ -31,7 +31,7 @@ define([
                     gender: {}
                 };
             }
-        }
+        };
 
         this.getAll = function() {
             if (!loaded['users']) {
@@ -42,7 +42,7 @@ define([
             }
 
             return users;
-        }
+        };
 
         this.change = function() {
             if (this.user) {
@@ -60,13 +60,13 @@ define([
                     });
                 });
             }
-        }
+        };
 
         this.remove = function(id) {
             UserService.remove(id).then(function(response) {
                 loaded['users'] = false;
             });
-        }
+        };
 
         this.switchState = function(id) {
             UserService.switchState(id).then(function(response) {
@@ -74,7 +74,7 @@ define([
                     loaded['users'] = false;
                 }
             });
-        }
+        };
 
         this.getLabels = function() {
             if (!loaded['labels']) {
@@ -85,8 +85,8 @@ define([
             }
 
             return labels;
-        }
-        
+        };
+
         this.getGenders = function() {
             if (!loaded['genders']) {
                 loaded['genders'] = true;
@@ -96,7 +96,7 @@ define([
             }
 
             return genders;
-        }
+        };
     }
 
     ret.$inject = ['$location', '$routeParams', 'UserService', '$scope'];

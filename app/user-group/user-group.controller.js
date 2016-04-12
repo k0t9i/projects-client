@@ -14,7 +14,7 @@ define([], function () {
             } else {
                 _this.group = {};
             }
-        }
+        };
 
         this.getAll = function() {
             if (!loaded['groups']) {
@@ -25,7 +25,7 @@ define([], function () {
             }
 
             return groups;
-        }
+        };
     }
 
     ret.$inject = ['UserGroupService', '$routeParams'];
